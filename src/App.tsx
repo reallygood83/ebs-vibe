@@ -364,11 +364,11 @@ export default function App() {
           className="comment-form"
         >
           <label>
-            번호 또는 별명
+            별명
             <input
               name="alias"
               maxLength={20}
-              placeholder="예: 7번 / 푸른하늘"
+              placeholder="예: 푸른하늘"
               required
               disabled={!canWrite}
             />
@@ -385,7 +385,7 @@ export default function App() {
             />
           </label>
           <div>
-            <small>이름·연락처 등 개인정보는 쓰지 말아 주세요.</small>
+            <small>이름·번호·연락처 등 개인정보는 쓰지 말아 주세요.</small>
             <button className="primary-button" disabled={busy || !canWrite}>
               {busy ? "등록 중…" : "댓글 남기기"}
             </button>
@@ -479,6 +479,15 @@ export default function App() {
               className={`lesson-cover cover-${i % 3}`}
               onClick={() => setModal({ kind: "lessonDetail", item: l })}
             >
+              <img
+                className="lesson-thumbnail"
+                src={`https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`}
+                alt={`${l.title} YouTube 썸네일`}
+                loading="lazy"
+                referrerPolicy="no-referrer"
+                onError={(e) => { e.currentTarget.style.visibility = "hidden"; }}
+                onLoad={(e) => { e.currentTarget.style.visibility = "visible"; }}
+              />
               <div className="cover-grid" />
               <span className="cover-subject">
                 {l.subject || "함께 배우는 시간"}
